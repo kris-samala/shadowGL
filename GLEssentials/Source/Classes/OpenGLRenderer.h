@@ -1,11 +1,6 @@
- /*
- Copyright (C) 2015 Apple Inc. All Rights Reserved.
- See LICENSE.txt for this sample’s licensing information
- 
- Abstract:
- The OpenGLRenderer class creates and draws objects.
-  Most of the code is OS independent.
- */
+//
+// OpenGLRenderer.h
+//
 #include "glUtil.h"
 #import <Foundation/Foundation.h>
 
@@ -15,7 +10,13 @@
 
 - (instancetype) initWithDefaultFBO: (GLuint) defaultFBOName;
 - (void) resizeWithWidth:(GLuint)width AndHeight:(GLuint)height;
+
+// Called once per frame before render.
+- (void) update;
+
+// Called once per frame after update.
 - (void) render;
+
 - (void) dealloc;
 
 @end
