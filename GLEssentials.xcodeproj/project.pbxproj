@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		301D56F31B41D64500EDF1DD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 301D56F21B41D64500EDF1DD /* AppDelegate.m */; };
-		3A4CF9411A897DE100324DBF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A4CF89A1A89593700324DBF /* Main.storyboard */; };
 		3A4CF9421A897DE500324DBF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A4CF89C1A89593700324DBF /* Images.xcassets */; };
 		3A622B941A899CEC00A12489 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A622B741A899CDE00A12489 /* main.m */; };
 		3A622B951A899CF400A12489 /* GLEssentialsFullscreenWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A622B6F1A899CDE00A12489 /* GLEssentialsFullscreenWindow.m */; };
@@ -17,6 +16,9 @@
 		3A622B981A899E5000A12489 /* OpenGLRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3A622B6C1A899CDE00A12489 /* OpenGLRenderer.mm */; };
 		588B20001D61231300C523B8 /* GLCheckErrors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 588B1FFB1D61231300C523B8 /* GLCheckErrors.cpp */; };
 		588B20011D61231300C523B8 /* ShaderProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 588B1FFD1D61231300C523B8 /* ShaderProgram.cpp */; };
+		588B20021D612C5600C523B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A4CF89A1A89593700324DBF /* Main.storyboard */; };
+		588B20041D612CAD00C523B8 /* VertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 588B20031D612CAD00C523B8 /* VertexShader.glsl */; };
+		588B20061D612E3F00C523B8 /* FragShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 588B20051D612E3F00C523B8 /* FragShader.glsl */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		588B1FFD1D61231300C523B8 /* ShaderProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderProgram.cpp; sourceTree = "<group>"; };
 		588B1FFE1D61231300C523B8 /* ShaderProgram.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ShaderProgram.hpp; sourceTree = "<group>"; };
 		588B1FFF1D61231300C523B8 /* VertexAttributeDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VertexAttributeDefines.h; sourceTree = "<group>"; };
+		588B20031D612CAD00C523B8 /* VertexShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = VertexShader.glsl; path = GLEssentials/Source/VertexShader.glsl; sourceTree = SOURCE_ROOT; };
+		588B20051D612E3F00C523B8 /* FragShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = FragShader.glsl; path = GLEssentials/Source/FragShader.glsl; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +100,8 @@
 		3A4CF89E1A89593700324DBF /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
+				588B20031D612CAD00C523B8 /* VertexShader.glsl */,
+				588B20051D612E3F00C523B8 /* FragShader.glsl */,
 			);
 			path = Shaders;
 			sourceTree = "<group>";
@@ -206,8 +212,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A4CF9411A897DE100324DBF /* Main.storyboard in Resources */,
+				588B20021D612C5600C523B8 /* Main.storyboard in Resources */,
 				3A4CF9421A897DE500324DBF /* Images.xcassets in Resources */,
+				588B20061D612E3F00C523B8 /* FragShader.glsl in Resources */,
+				588B20041D612CAD00C523B8 /* VertexShader.glsl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
