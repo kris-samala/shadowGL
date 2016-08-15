@@ -27,6 +27,7 @@ typedef unsigned short Index;
 - (void) setupVertexBuffer;
 - (void) setupVAO;
 - (void) setupShaderProgram;
+- (void) setupTexture;
 
 @end
 
@@ -42,6 +43,8 @@ typedef unsigned short Index;
     GLuint _vbo_screenQuad;
     GLuint _ibo_screenQuad;
     GLuint _numIndices;
+    
+    GLuint _texture;
     
     ShaderProgram _shaderProgram;
 }
@@ -62,11 +65,11 @@ typedef unsigned short Index;
 - (void) onInit
 {
     
-    //	filePathName = [[NSBundle mainBundle] pathForResource:@"demon" ofType:@"model"];
     [self setupGL];
     [self setupVertexBuffer];
     [self setupVAO];
     [self setupShaderProgram];
+    [self setupTexture];
 }
 
 //---------------------------------------------------------------------------------------
@@ -89,10 +92,10 @@ typedef unsigned short Index;
 {
     std::vector<Vertex> screenQuadVertices = {
         //   Positions(2d),   texture-coordinates
-        Vertex{-1.0f, 1.0f,    0.0f, 0.0f},     // Top Left
-        Vertex{ 1.0f, 1.0f,    1.0f, 0.0f},     // Top Right
-        Vertex{-1.0f,-1.0f,    0.0f, 1.0f},     // Bottom Left
-        Vertex{ 1.0f,-1.0f,    1.0f, 1.0f},     // Bottom Right
+        Vertex{-1.0f, 1.0f,    0.0f, 1.0f},     // Top Left
+        Vertex{ 1.0f, 1.0f,    1.0f, 1.0f},     // Top Right
+        Vertex{-1.0f,-1.0f,    0.0f, 0.0f},     // Bottom Left
+        Vertex{ 1.0f,-1.0f,    1.0f, 0.0f},     // Bottom Right
     };
     
     //-- Upload Vertex data:
@@ -154,7 +157,7 @@ typedef unsigned short Index;
         glBindBuffer(GL_ARRAY_BUFFER, _vbo_screenQuad);
         GLint numElements = 2;
         GLsizei stride = sizeof(Vertex);
-        size_t offset = sizeof(Vertex::position)*2;
+        size_t offset = sizeof(float)*2;
         glVertexAttribPointer(ATTRIBUTE_TEXTCOORD, numElements, GL_FLOAT, GL_FALSE, stride,
                               reinterpret_cast<const GLvoid *>(offset));
         CHECK_GL_ERRORS;
@@ -183,6 +186,45 @@ typedef unsigned short Index;
     _shaderProgram.attachFragmentShader(fragmentShaderFile);
     _shaderProgram.link();
     
+    _shaderProgram.enable();
+        // Set sampler2d to use texture unit offset 0.
+        GLint uniformLocation = _shaderProgram.getUniformLocation("tex");
+        glUniform1i(uniformLocation, 0);
+    _shaderProgram.disable();
+    
+    
+    CHECK_GL_ERRORS;
+}
+
+//---------------------------------------------------------------------------------------
+
+- (void) setupTexture
+{
+    glGenTextures(1, &_texture);
+    
+    glBindTexture(GL_TEXTURE_2D, _texture);
+    
+    //wrap
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    
+    //border
+    float color[] = { 1.0f, 0.0f, 0.0f, 1.0f };
+    glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, color);
+    
+    //filtering
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    
+    //black and white checkerboard image
+    float pixels[] = {
+        0.0f, 0.0f, 0.0f,   1.0f, 1.0f, 1.0f,
+        1.0f, 1.0f, 1.0f,   0.0f, 0.0f, 0.0f
+    };
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 2, 2, 0, GL_RGB, GL_FLOAT, pixels);
+    
+    
+ 
     CHECK_GL_ERRORS;
 }
 
@@ -205,6 +247,9 @@ typedef unsigned short Index;
 - (void) render
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, _texture);
     
     glBindVertexArray(_vao_screenQuad);
     

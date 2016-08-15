@@ -9,7 +9,7 @@
 layout(location = ATTRIBUTE_POSITION) in vec2 position;
 layout(location = ATTRIBUTE_TEXTCOORD) in vec2 texCoord;
 
-struct VSoutFSIn {
+out VSoutFSIn {
     vec2 texCoord;
 } vsOut;
 
