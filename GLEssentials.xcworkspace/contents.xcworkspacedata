@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:GLEssentials.xcodeproj">
+      location = "group:/Users/ksamala/Desktop/cocoa/gl/GLEssentials/ShadowGL.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

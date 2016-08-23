@@ -7,13 +7,13 @@
  */
 
 #import "GLEssentialsGLView.h"
-#import "OpenGLRenderer.h"
+#import "ShadowGLRenderer.h"
 
 #define SUPPORT_RETINA_RESOLUTION 1
 
 @interface GLEssentialsGLView ()
 {
-    OpenGLRenderer* _renderer;
+    ShadowGLRenderer* _renderer;
 }
 @end
 
@@ -138,7 +138,7 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink,
 	
 	// Init our renderer.  Use 0 for the defaultFBO which is appropriate for
 	// OSX (but not iOS since iOS apps must create their own FBO)
-	_renderer = [[OpenGLRenderer alloc] initWithDefaultFBO:0];
+	_renderer = [[ShadowGLRenderer alloc] initWithDefaultFBO:0];
 }
 
 - (void)reshape

@@ -1,7 +1,7 @@
 //
-// OpenGLRenderer.m
+// ShadowGLRenderer.m
 //
-#import "OpenGLRenderer.h"
+#import "ShadowGLRenderer.h"
 
 #import "ShaderProgram.hpp"
 #import "GLCheckErrors.h"
@@ -19,7 +19,7 @@ struct Vertex {
 typedef unsigned short Index;
 
 
-@interface OpenGLRenderer ()
+@interface ShadowGLRenderer ()
 // Add private methods here that are only called from this file:
 
 - (void) onInit;
@@ -32,7 +32,7 @@ typedef unsigned short Index;
 @end
 
 
-@implementation OpenGLRenderer {
+@implementation ShadowGLRenderer {
 @private
 // Add private member instance variables here:
     
@@ -341,6 +341,7 @@ typedef unsigned short Index;
     NSLog(@":( Websocket Failed With Error %@", error);
     _webSocket = nil;
 }
+
 
 - (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean {
     NSLog(@"WebSocket closed");

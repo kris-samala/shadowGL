@@ -13,7 +13,7 @@
 		3A622B951A899CF400A12489 /* GLEssentialsFullscreenWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A622B6F1A899CDE00A12489 /* GLEssentialsFullscreenWindow.m */; };
 		3A622B961A899CF400A12489 /* GLEssentialsGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A622B711A899CDE00A12489 /* GLEssentialsGLView.m */; };
 		3A622B971A899CF400A12489 /* GLEssentialsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A622B731A899CDE00A12489 /* GLEssentialsWindowController.m */; };
-		3A622B981A899E5000A12489 /* OpenGLRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3A622B6C1A899CDE00A12489 /* OpenGLRenderer.mm */; };
+		3A622B981A899E5000A12489 /* ShadowGLRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3A622B6C1A899CDE00A12489 /* ShadowGLRenderer.mm */; };
 		588B20001D61231300C523B8 /* GLCheckErrors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 588B1FFB1D61231300C523B8 /* GLCheckErrors.cpp */; };
 		588B20011D61231300C523B8 /* ShaderProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 588B1FFD1D61231300C523B8 /* ShaderProgram.cpp */; };
 		588B20021D612C5600C523B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A4CF89A1A89593700324DBF /* Main.storyboard */; };
@@ -30,9 +30,9 @@
 		3A4CF89B1A89593700324DBF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3A4CF89C1A89593700324DBF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3A4CF89D1A89593700324DBF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3A4CF9161A897D0E00324DBF /* GLEssentials.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GLEssentials.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3A622B6B1A899CDE00A12489 /* OpenGLRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLRenderer.h; sourceTree = "<group>"; };
-		3A622B6C1A899CDE00A12489 /* OpenGLRenderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenGLRenderer.mm; sourceTree = "<group>"; };
+		3A4CF9161A897D0E00324DBF /* ShadowGL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShadowGL.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A622B6B1A899CDE00A12489 /* ShadowGLRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShadowGLRenderer.h; sourceTree = "<group>"; };
+		3A622B6C1A899CDE00A12489 /* ShadowGLRenderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ShadowGLRenderer.mm; sourceTree = "<group>"; };
 		3A622B6E1A899CDE00A12489 /* GLEssentialsFullscreenWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLEssentialsFullscreenWindow.h; sourceTree = "<group>"; };
 		3A622B6F1A899CDE00A12489 /* GLEssentialsFullscreenWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLEssentialsFullscreenWindow.m; sourceTree = "<group>"; };
 		3A622B701A899CDE00A12489 /* GLEssentialsGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLEssentialsGLView.h; sourceTree = "<group>"; };
@@ -96,7 +96,7 @@
 		3A4CF8661A8958DD00324DBF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3A4CF9161A897D0E00324DBF /* GLEssentials.app */,
+				3A4CF9161A897D0E00324DBF /* ShadowGL.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -145,8 +145,8 @@
 			isa = PBXGroup;
 			children = (
 				3A622B6D1A899CDE00A12489 /* OSX */,
-				3A622B6B1A899CDE00A12489 /* OpenGLRenderer.h */,
-				3A622B6C1A899CDE00A12489 /* OpenGLRenderer.mm */,
+				3A622B6B1A899CDE00A12489 /* ShadowGLRenderer.h */,
+				3A622B6C1A899CDE00A12489 /* ShadowGLRenderer.mm */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -182,9 +182,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3A4CF9151A897D0E00324DBF /* GLEssentials-OSX */ = {
+		3A4CF9151A897D0E00324DBF /* ShadowGL-OSX */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3A4CF9331A897D0F00324DBF /* Build configuration list for PBXNativeTarget "GLEssentials-OSX" */;
+			buildConfigurationList = 3A4CF9331A897D0F00324DBF /* Build configuration list for PBXNativeTarget "ShadowGL-OSX" */;
 			buildPhases = (
 				3B03A10AEFFE38C6196ACA5C /* [CP] Check Pods Manifest.lock */,
 				3A4CF9121A897D0E00324DBF /* Sources */,
@@ -197,9 +197,9 @@
 			);
 			dependencies = (
 			);
-			name = "GLEssentials-OSX";
+			name = "ShadowGL-OSX";
 			productName = "GLEssentials-OSX";
-			productReference = 3A4CF9161A897D0E00324DBF /* GLEssentials.app */;
+			productReference = 3A4CF9161A897D0E00324DBF /* ShadowGL.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -216,7 +216,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 3A4CF8601A8958DD00324DBF /* Build configuration list for PBXProject "GLEssentials" */;
+			buildConfigurationList = 3A4CF8601A8958DD00324DBF /* Build configuration list for PBXProject "ShadowGL" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -229,7 +229,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3A4CF9151A897D0E00324DBF /* GLEssentials-OSX */,
+				3A4CF9151A897D0E00324DBF /* ShadowGL-OSX */,
 			);
 		};
 /* End PBXProject section */
@@ -308,7 +308,7 @@
 				3A622B961A899CF400A12489 /* GLEssentialsGLView.m in Sources */,
 				3A622B941A899CEC00A12489 /* main.m in Sources */,
 				3A622B951A899CF400A12489 /* GLEssentialsFullscreenWindow.m in Sources */,
-				3A622B981A899E5000A12489 /* OpenGLRenderer.mm in Sources */,
+				3A622B981A899E5000A12489 /* ShadowGLRenderer.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,7 +414,7 @@
 				INFOPLIST_FILE = GLEssentials/Data/OSX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_NAME = GLEssentials;
+				PRODUCT_NAME = ShadowGL;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -430,7 +430,7 @@
 				INFOPLIST_FILE = GLEssentials/Data/OSX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_NAME = GLEssentials;
+				PRODUCT_NAME = ShadowGL;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -438,7 +438,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3A4CF8601A8958DD00324DBF /* Build configuration list for PBXProject "GLEssentials" */ = {
+		3A4CF8601A8958DD00324DBF /* Build configuration list for PBXProject "ShadowGL" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3A4CF8861A8958DD00324DBF /* Debug */,
@@ -447,7 +447,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3A4CF9331A897D0F00324DBF /* Build configuration list for PBXNativeTarget "GLEssentials-OSX" */ = {
+		3A4CF9331A897D0F00324DBF /* Build configuration list for PBXNativeTarget "ShadowGL-OSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3A4CF9341A897D0F00324DBF /* Debug */,

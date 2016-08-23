@@ -1,11 +1,11 @@
 //
-// OpenGLRenderer.h
+// ShadowGLRenderer.h
 //
 #include "glUtil.h"
 #import <Foundation/Foundation.h>
 #import <SocketRocket/SRWebSocket.h>
 
-@interface OpenGLRenderer : NSObject <SRWebSocketDelegate>
+@interface ShadowGLRenderer : NSObject <SRWebSocketDelegate>
 
 @property (nonatomic) GLuint defaultFBOName;
 
