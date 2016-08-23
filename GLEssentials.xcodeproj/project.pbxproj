@@ -19,9 +19,11 @@
 		588B20021D612C5600C523B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A4CF89A1A89593700324DBF /* Main.storyboard */; };
 		588B20041D612CAD00C523B8 /* VertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 588B20031D612CAD00C523B8 /* VertexShader.glsl */; };
 		588B20061D612E3F00C523B8 /* FragShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 588B20051D612E3F00C523B8 /* FragShader.glsl */; };
+		73E1BAE61BB347DB6F780060 /* libPods-GLEssentials-OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB5DE418C6DDBEFB87824B18 /* libPods-GLEssentials-OSX.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		293E59824DFAB9E399136F65 /* Pods-GLEssentials-OSX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GLEssentials-OSX.release.xcconfig"; path = "Pods/Target Support Files/Pods-GLEssentials-OSX/Pods-GLEssentials-OSX.release.xcconfig"; sourceTree = "<group>"; };
 		301D56F11B41D64500EDF1DD /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		301D56F21B41D64500EDF1DD /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3047849F1B323BA9004B5A28 /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = Readme.md; path = GLEssentials/Source/Readme.md; sourceTree = "<group>"; };
@@ -46,6 +48,8 @@
 		588B1FFF1D61231300C523B8 /* VertexAttributeDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VertexAttributeDefines.h; sourceTree = "<group>"; };
 		588B20031D612CAD00C523B8 /* VertexShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = VertexShader.glsl; path = GLEssentials/Source/VertexShader.glsl; sourceTree = SOURCE_ROOT; };
 		588B20051D612E3F00C523B8 /* FragShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = FragShader.glsl; path = GLEssentials/Source/FragShader.glsl; sourceTree = SOURCE_ROOT; };
+		AB5DE418C6DDBEFB87824B18 /* libPods-GLEssentials-OSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GLEssentials-OSX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC1BE17C41D88B4ECC8F798A /* Pods-GLEssentials-OSX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GLEssentials-OSX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GLEssentials-OSX/Pods-GLEssentials-OSX.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,12 +57,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73E1BAE61BB347DB6F780060 /* libPods-GLEssentials-OSX.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03768B960A73D89BCD9E1747 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AB5DE418C6DDBEFB87824B18 /* libPods-GLEssentials-OSX.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		19E441D993D9D23F69212A48 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CC1BE17C41D88B4ECC8F798A /* Pods-GLEssentials-OSX.debug.xcconfig */,
+				293E59824DFAB9E399136F65 /* Pods-GLEssentials-OSX.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		3A4CF85C1A8958DD00324DBF = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +88,8 @@
 				3A622B601A899CDE00A12489 /* Source */,
 				3A4CF88E1A89593700324DBF /* Data */,
 				3A4CF8661A8958DD00324DBF /* Products */,
+				19E441D993D9D23F69212A48 /* Pods */,
+				03768B960A73D89BCD9E1747 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -162,9 +186,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3A4CF9331A897D0F00324DBF /* Build configuration list for PBXNativeTarget "GLEssentials-OSX" */;
 			buildPhases = (
+				3B03A10AEFFE38C6196ACA5C /* [CP] Check Pods Manifest.lock */,
 				3A4CF9121A897D0E00324DBF /* Sources */,
 				3A4CF9131A897D0E00324DBF /* Frameworks */,
 				3A4CF9141A897D0E00324DBF /* Resources */,
+				FA2C104768EC85D7EB6CB8C8 /* [CP] Embed Pods Frameworks */,
+				1D07BFE2D84D444F10BB5D68 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -220,6 +247,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1D07BFE2D84D444F10BB5D68 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GLEssentials-OSX/Pods-GLEssentials-OSX-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3B03A10AEFFE38C6196ACA5C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FA2C104768EC85D7EB6CB8C8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GLEssentials-OSX/Pods-GLEssentials-OSX-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3A4CF9121A897D0E00324DBF /* Sources */ = {
@@ -331,6 +406,7 @@
 		};
 		3A4CF9341A897D0F00324DBF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC1BE17C41D88B4ECC8F798A /* Pods-GLEssentials-OSX.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "-";
@@ -345,6 +421,7 @@
 		};
 		3A4CF9351A897D0F00324DBF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 293E59824DFAB9E399136F65 /* Pods-GLEssentials-OSX.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "-";

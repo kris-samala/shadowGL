@@ -46,6 +46,13 @@ typedef unsigned short Index;
     
     GLuint _texture;
     
+    GLubyte * _pixels;
+    int _imageWidth;
+    int _imageHeight;
+    
+    SRWebSocket * _webSocket;
+    NSMutableArray * _frame;
+    
     ShaderProgram _shaderProgram;
 }
 
@@ -70,6 +77,11 @@ typedef unsigned short Index;
     [self setupVAO];
     [self setupShaderProgram];
     [self setupTexture];
+    
+    _imageWidth = 640;
+    _imageHeight = 480;
+    _pixels = new unsigned char[_imageHeight * _imageWidth * 3];
+    [self connectWebSocket];
 }
 
 //---------------------------------------------------------------------------------------
@@ -205,26 +217,16 @@ typedef unsigned short Index;
     glBindTexture(GL_TEXTURE_2D, _texture);
     
     //wrap
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    
-    //border
-    float color[] = { 1.0f, 0.0f, 0.0f, 1.0f };
-    glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, color);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
     
     //filtering
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     
-    //black and white checkerboard image
-    float pixels[] = {
-        0.0f, 0.0f, 0.0f,   1.0f, 1.0f, 1.0f,
-        1.0f, 1.0f, 1.0f,   0.0f, 0.0f, 0.0f
-    };
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 2, 2, 0, GL_RGB, GL_FLOAT, pixels);
-    
-    
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, _imageWidth, _imageHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, nullptr);
  
+    glBindTexture(GL_TEXTURE_2D, 0);
     CHECK_GL_ERRORS;
 }
 
@@ -240,7 +242,47 @@ typedef unsigned short Index;
 //---------------------------------------------------------------------------------------
 - (void) update
 {
+    int w = _imageWidth;
+    int h = _imageHeight;
+    int r = h-1;
     
+    for(int i=0; i<h; ++i) {
+        NSArray * row = [_frame objectAtIndex:r];
+        --r;
+        
+        for(int j=0; j<w; ++j) {
+            unsigned char c = [[row objectAtIndex:j] unsignedCharValue];
+            c = [self adjustColor:c];
+            
+            for(int k=0; k < 3; ++k) {
+                //random pixel value
+//                float r = static_cast<float> (rand()) / RAND_MAX;
+//                _pixels[i*3*w + j*3 + k] = floor(r * 255);
+                _pixels[i*3*w + j*3 + k] = c;
+            }
+        }
+    }
+    
+    glBindTexture(GL_TEXTURE_2D, _texture);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, _imageWidth, _imageHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, _pixels);
+//    glDeleteTextures(1, &_texture);
+//    glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, _imageWidth, _imageHeight, GL_BGRA, GL_UNSIGNED_BYTE, _pixels);
+  
+    glBindTexture(GL_TEXTURE_2D, 0);
+    CHECK_GL_ERRORS;
+}
+
+- (unsigned char) adjustColor: (unsigned char) color {
+    if (color > 238) {
+        color = 255;
+    } else {
+        unsigned char newColor = color - 102;
+        if (newColor < 0) {
+            newColor = 0;
+        }
+        color = newColor;
+    }
+    return color;
 }
 
 //---------------------------------------------------------------------------------------
@@ -266,6 +308,57 @@ typedef unsigned short Index;
 - (void) dealloc
 {
     // Do any cleanup here.
+    delete _pixels;
+    _webSocket = nil;
+}
+
+
+//WEBSOCKET
+
+#pragma mark - Connection
+
+- (void)connectWebSocket {
+    _webSocket.delegate = nil;
+    _webSocket = nil;
+    printf("Connecting web socket...");
+    
+    NSString *urlString = @"ws://localhost:8090";
+    _webSocket = [[SRWebSocket alloc] initWithURL:[NSURL URLWithString:urlString]];
+    _webSocket.delegate = self;
+    
+    [_webSocket open];
+}
+
+#pragma mark - SRWebSocket delegate
+
+- (void)webSocketDidOpen:(SRWebSocket *)webSocket {
+    NSLog(@"Websocket Connected");
+    
+    [webSocket send:@"@"];
+}
+
+- (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error {
+    NSLog(@":( Websocket Failed With Error %@", error);
+    _webSocket = nil;
+}
+
+- (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean {
+    NSLog(@"WebSocket closed");
+    _webSocket = nil;
+}
+
+- (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(NSString *)message {
+    
+    NSError *error;
+    NSData *data = [message dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    
+    _frame = [NSMutableArray arrayWithArray:[dictionary valueForKey:@"frame"]];
+    
+    [webSocket send:@"@"];
+    error = nil;
+    data = nil;
+    dictionary = nil;
 }
 
 @end
